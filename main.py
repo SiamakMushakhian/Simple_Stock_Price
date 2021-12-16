@@ -40,17 +40,10 @@ if start_date > end_date:
 tickerDf = tickerData.history(interval=selected_interval, start=start_date, end=end_date)
 # Open High Low Close Volume Dividends Stock Splits
 
-chart_list = [tickerDf.Open, tickerDf.High, tickerDf.Low, tickerDf.Close, tickerDf.Volume]
+chart_list = ['Open', 'High', 'Low', 'Close', 'Volume']
 selected_charts = st.multiselect("Charts", chart_list)
 
 if st.button("Show"):
-    for chart in chart_list:
-        st.line_chart(chart)
-        # st.write(f"## {chart}")
-        
-
-    # st.write("## Closing Price")
-    # st.line_chart(tickerDf.Close)
-
-    # st.write("## Volume")
-    # st.line_chart(tickerDf.Volume)
+    for chart in selected_charts:
+        st.write(f"## {chart}")
+        st.line_chart(tickerDf[chart])
